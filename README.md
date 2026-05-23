@@ -38,6 +38,19 @@ https://cdn.senaku.biz.id/u/file.ext
 | drag and drop | active |
 | api endpoint | active |
 | upload history | local session |
+| mobile optimized | active |
+
+---
+
+## installation
+
+```bash
+git clone https://github.com/senaczk/cdn-senaczk.git
+
+cd cdn-senaczk
+
+node source.js
+```
 
 ---
 
@@ -53,39 +66,46 @@ field:
 file
 ```
 
-example:
+Example:
 
 ```js
-const fs = require('fs')
-const FormData = require('form-data')
-const fetch = require('node-fetch')
+const fs=require('fs')
+const FormData=require('form-data')
+const fetch=require('node-fetch')
 
-async function upload(filePath) {
-  const form = new FormData()
+async function upload(filePath){
 
-  form.append(
-    'file',
-    fs.createReadStream(filePath)
-  )
+const form=new FormData()
 
-  const res = await fetch('https://cdn.senaku.biz.id/upload', {
-    method: 'POST',
-    body: form
-  })
+form.append(
+'file',
+fs.createReadStream(filePath)
+)
 
-  const data = await res.json()
-  return data.url
+const res=await fetch(
+'https://cdn.senaku.biz.id/upload',
+{
+method:'POST',
+body:form
+}
+)
+
+const data=await res.json()
+
+return data.url
+
 }
 
-upload('./image.jpg').then(console.log)
+upload('./image.jpg')
+.then(console.log)
 ```
 
-response:
+Response:
 
 ```json
 {
-  "success": true,
-  "url": "https://cdn.senaku.biz.id/u/x7kd3a.jpg"
+"success":true,
+"url":"https://cdn.senaku.biz.id/u/x7kd3a.jpg"
 }
 ```
 
@@ -94,12 +114,24 @@ response:
 ## stack
 
 ```txt
-Node.js
-Express
+NodeJS
+ExpressJS
 Multer
-Nginx
 PM2
+Nginx
 Ubuntu
+```
+
+---
+
+## file url example
+
+```txt
+https://cdn.senaku.biz.id/u/x7kd3a.jpg
+
+https://cdn.senaku.biz.id/u/a91k2v.mp4
+
+https://cdn.senaku.biz.id/u/p6x4bd.mp3
 ```
 
 ---
@@ -114,8 +146,18 @@ Ubuntu
 
 ---
 
+## source
+
+```txt
+source status : private
+documentation : public
+aura : maximum
+```
+
+---
+
 <div align="center">
 
-built by **Arsena Luciendra**
+built by Arsena Luciendra
 
 </div>
